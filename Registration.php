@@ -65,7 +65,7 @@ else{
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Home </span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Login.php">Entrar</a>
@@ -75,10 +75,10 @@ else{
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="Registration.php">Criar Conta <span class="sr-only">(current)</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Premium</a>
         </div>
       </li>
       <li class="nav-item">
@@ -86,6 +86,10 @@ else{
       </li>
     </ul>
   </nav>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <article>
   <div class="signup-form">
     <form action="/examples/actions/confirmation.php" method="post">
