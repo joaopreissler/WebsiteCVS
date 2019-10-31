@@ -7,7 +7,7 @@ $usuario = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
 $senha = md5($password);
 
-$sql = "SELECT * FROM usuarios WHERE email = '$usuario' && senha = '$password' LIMIT 1";
+$sql = "SELECT * FROM `usuarios` WHERE email = '$usuario' && senha = '$senha' LIMIT 1";
 $result = mysqli_query($conn, $sql);
 $resultado = mysqli_fetch_assoc($result);
 

@@ -4,21 +4,17 @@ $mysqli = new mysqli('localhost', 'root', '1234', 'cvsconsultoria');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 //two passwords match
-  if($_POST['password'] == $_POST['password_confirm']){
+  if($_POST['password'] == $_POST['confirm_password']){
 $username = $mysqli->real_escape_string($_POST['username']);
 $email = $mysqli->real_escape_string($_POST['email']);
 $password = $mysqli->real_escape_string($_POST['password']);
 $password = md5($password);
-$avatar_path = $mysqli->real_escape_string('image/'.$_FILES['avatar']['name']);
 
-//make sure file type is imagearc
-if (preg_match("!image!", $_FILES['avatar']['type'])){
-//copy image to image/folder
-if(copy($_FILES['avatar']['tmp_name'], $avatar_path)){
+
   $_SESSION['username'] = $username;
-  $_SESSION['avatar'] = $avatar_path;
-  $sql = "INSERT INTO (nome, email, senha, avatar)"
-  . "VALUES ('$username', '$email','$password','$avatar_path')";
+
+  $sql = "INSERT INTO `usuarios` (nome, email, senha)"
+  . "VALUES ('$username', '$email','$password')";
   //if the query is successful, redirect to Login.php
   if($mysqli->query($sql) === true){
     $_SESSION['message'] = 'Registro feito com Sucesso!';
@@ -27,14 +23,7 @@ if(copy($_FILES['avatar']['tmp_name'], $avatar_path)){
   else{
     $_SESSION['message'] = "Não foi possível adicionar o nome. Tente outra vez";
   }
-}
-else{
-  $_SESSION['message'] = "Falha no envio da foto! ";
-}
-}
-else{
-  $_SESSION['message'] = "Por favor utilize fotos GIF, JPG ou PNG.";
-}
+
 }
 else{
   $_SESSION['message'] = "As senhas nao sao iguais";
@@ -92,13 +81,13 @@ else{
 
 <article>
   <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form action="Registration.php" method="post">
 		<h2>Register</h2>
 		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
         <div class="form-group">
 			<div class="row">
-				<div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
-				<div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>
+				<div class="col-xs-6"><input type="text" class="form-control" name="username" placeholder="Digite seu nome" required="required"></div>
+
 			</div>
         </div>
         <div class="form-group">
