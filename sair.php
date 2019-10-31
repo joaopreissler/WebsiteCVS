@@ -10,5 +10,5 @@ $_SESSION['usuarioEmail'],
 $_SESSION['usuarioSenha'],
 );
 
-header("Localtion: index.html");
+header("Location: Login.php");
  ?>

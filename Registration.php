@@ -16,18 +16,17 @@ $password = md5($password);
   $sql = "INSERT INTO `usuarios` (nome, email, senha)"
   . "VALUES ('$username', '$email','$password')";
   //if the query is successful, redirect to Login.php
-  if($mysqli->query($sql) === true){
+    if($mysqli->query($sql) === true){
     $_SESSION['message'] = 'Registro feito com Sucesso!';
     header("Location: Login.php");
-  }
-  else{
-    $_SESSION['message'] = "Não foi possível adicionar o nome. Tente outra vez";
-  }
+    }else
+    {$_SESSION['message'] = "Não foi possível adicionar o nome. Tente outra vez";
+    }
 
-}
-else{
+  }
+}else{
   $_SESSION['message'] = "As senhas nao sao iguais";
-}
+
 }
 ?>
 <!DOCTYPE html>
@@ -82,13 +81,11 @@ else{
 <article>
   <div class="signup-form">
     <form action="Registration.php" method="post">
-		<h2>Register</h2>
-		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
+		<h2>Registrar</h2>
+		<p class="hint-text">Crie sua conta. É gratis e rapido.</p>
         <div class="form-group">
-			<div class="row">
-				<div class="col-xs-6"><input type="text" class="form-control" name="username" placeholder="Digite seu nome" required="required"></div>
-
-			</div>
+							<div class="col-xs-6"><input type="text" class="form-control" name="username" placeholder="Digite seu nome" required="required"></div>
+			
         </div>
         <div class="form-group">
         	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
@@ -100,13 +97,18 @@ else{
             <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
         </div>
         <div class="form-group">
-			<label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+			<label class="checkbox-inline"><input type="checkbox" required="required"> Eu aceito os <a href="#">Termos de Uso</a> &amp; <a href="#">Politica de Privacidade</a></label>
 		</div>
 		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Criar Conta!</button>
         </div>
     </form>
-	<div class="text-center">Already have an account? <a href="#">Sign in</a></div>
+    <p class="text-center text-danger">
+      <?php if(isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+      }?>
+	<div class="text-center">Já tem uma conta? <a href="Login.php">Entrar</a></div>
 </div>
 </article>
 <div id="page-content">
